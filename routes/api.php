@@ -7,7 +7,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::middleware('api')->prefix('tasks')->group(function () {
+Route::prefix('tasks')->group(function () {
     Route::get('/', [TaskController::class, 'index']);              // List all tasks
     Route::post('/', [TaskController::class, 'store']);             // Create a new task
 
