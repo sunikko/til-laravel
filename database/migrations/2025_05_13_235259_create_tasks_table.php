@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use MongoDB\Laravel\Schema\Blueprint; 
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tasks', function (Blueprint $collection) {
-            $collection->string('name');
-            $collection->string('description');
-            $collection->string('secure_token')->unique();
-            $collection->softDeletes();
-            $collection->timestamps();
+        Schema::connection('mongodb')->table('project_tasks', function (Blueprint $collection) {
+            $collection->unique('secure_token');
         });
     }
 

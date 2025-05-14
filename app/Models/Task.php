@@ -12,4 +12,6 @@ class Task extends Eloquent
     protected $collection = 'project_tasks';
     protected $fillable = ['name', 'description', 'secure_token'];
     protected $dates = ['deleted_at'];
+    protected $guarded = [];
+    protected string|null $secure_token;
 }
