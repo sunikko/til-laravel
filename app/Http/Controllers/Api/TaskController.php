@@ -8,6 +8,13 @@ use Illuminate\Support\Str;
 
 class TaskController extends Controller
 {
+    protected $taskModel;
+
+    public function __construct(Task $taskModel)
+    {
+        $this->taskModel = $taskModel;
+    }
+
     /**
      * List all tasks.
      *
@@ -43,7 +50,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return response()->json(Task::all(), 200);
+        $tasks = $this->taskModel->all();
+        return response()->json($tasks, 200);
     }
 
     /**
@@ -84,13 +92,11 @@ class TaskController extends Controller
             'description' => 'required|string|min:10|max:5000',
         ]);
 
-        $task = Task::create([
+        $task = $this->taskModel->create([
             'name' => $request->name,
             'description' => $request->description,
             'secure_token' => (string) Str::uuid(),
         ]);
-
-        $task->save();
 
         return response()->json(['message' => 'Task created', 'task' => $task], 201);
     }
@@ -116,7 +122,7 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        $task = Task::findOrFail($id);
+        $task = $this->taskModel->findOrFail($id);
 
         return response()->json($task, 200);
     }
@@ -168,12 +174,12 @@ class TaskController extends Controller
         $request->validate([
             'name' => 'required|min:3|max:100',
             'description' => 'required|min:10|max:5000',
-            'secure_token' => 'required|exists:tasks,secure_token',
+            'secure_token' => 'required|string',
         ]);
 
-        $task = Task::where('id', $id)
-            ->where('secure_token', $request->secure_token)
-            ->firstOrFail();
+        $task = $this->taskModel->where('id', $id)
+                ->where('secure_token', $request->secure_token)
+                ->firstOrFail();
 
         $task->update([
             'name' => $request->name,
@@ -217,9 +223,10 @@ class TaskController extends Controller
             'secure_token' => 'required|string',
         ]);
 
-        $task = Task::where('id', $id)
-                ->where('secure_token', $request->secure_token)
-                ->firstOrFail();
+        $task = $this->taskModel->where('id', $id)
+            ->where('secure_token', $request->secure_token)
+            ->firstOrFail();
+
 
         $task->delete();
         return response()->json(null, 204);

@@ -38,7 +38,8 @@ This repository contains a simple Laravel RESTful API called Laravel Tech Task D
 -   MongoDB used as the database backend (configured in `.env`).
 -   Soft deletes implemented using `SoftDeletes`.
 -   All requests are logged using middleware to `storage/logs/requests.log`.
--   Feature tests included using Laravel’s testing suite (tests/Feature/TaskApiTest.php). Run tests via `php artisan test`.
+-   Feature tests included using Laravel’s testing suite. Run tests via `php artisan test`.
+-   This project includes unit tests for the `TaskController` to ensure its core methods behave as expected in isolation using mocked dependencies. Run tests via `php artisan test --filter TaskControllerUnitTest`
 
 ### Endpoints Summary
 
