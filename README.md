@@ -36,7 +36,7 @@ We would like you to create a basic Laravel API called **“Laravel Tech Task De
 -   MongoDB is used (configured in `.env`).
 -   Soft deletes implemented using `SoftDeletes`.
 -   All requests are logged using middleware.
--   Feature tests provided using Laravel test suite.
+-   Feature tests provided using Laravel test suite. `php artisan test`
 
 ### Endpoints Summary
 
