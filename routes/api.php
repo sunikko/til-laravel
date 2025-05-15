@@ -17,7 +17,3 @@ Route::prefix('tasks')->group(function () {
     Route::put('/{id}', [TaskController::class, 'update']);         // Update a specific task 
     Route::delete('/{id}', [TaskController::class, 'destroy']);     // Delete a specific task
 });
-
-Route::get('/test', function () {
-    return response()->json(['message' => 'API is working!']);
-});

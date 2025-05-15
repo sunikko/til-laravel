@@ -1,6 +1,8 @@
-Thank you for taking the time to complete this task. We appreciate your effort and look forward to reviewing your submission.
+## Laravel Tech Task Demo API
 
-We would like you to create a basic Laravel API called **“Laravel Tech Task Demo API”**. The purpose of the API is to display, add, edit and delete tasks.
+Thank you for taking the time to review this task submission.
+
+This repository contains a simple Laravel RESTful API called Laravel Tech Task Demo API, which allows you to display, add, edit, and delete tasks. It follows Laravel best practices and is built using a NoSQL database (MongoDB).
 
 ## Key criteria:
 
@@ -31,12 +33,12 @@ We would like you to create a basic Laravel API called **“Laravel Tech Task De
 ### Features Implemented
 
 -   CRUD operations for `Task` using RESTful API.
--   `name` and `description` field validations as required.
--   `secure_token` generated on task creation and required for updates/deletes.
--   MongoDB is used (configured in `.env`).
+-   `name` and `description` field validations as required (length constraints applied).
+-   `secure_token` generated on task creation and required for updates and deletes to ensure secure access.
+-   MongoDB used as the database backend (configured in `.env`).
 -   Soft deletes implemented using `SoftDeletes`.
--   All requests are logged using middleware.
--   Feature tests provided using Laravel test suite. `php artisan test`
+-   All requests are logged using middleware to `storage/logs/requests.log`.
+-   Feature tests included using Laravel’s testing suite (tests/Feature/TaskApiTest.php). Run tests via `php artisan test`.
 
 ### Endpoints Summary
 
@@ -47,9 +49,3 @@ We would like you to create a basic Laravel API called **“Laravel Tech Task De
 | GET    | /api/tasks/{id} | Get a single task                                    |
 | PUT    | /api/tasks/{id} | Update task (include `secure_token` in request body) |
 | DELETE | /api/tasks/{id} | Delete task (include `secure_token` in request body) |
-
-### Notes
-
--   To update or delete a task, you **must include the `secure_token` in the JSON body** of your request.
--   This token is automatically generated when a task is created and returned in the response.
--   Tests are written in `tests/Feature/TaskApiTest.php`.
