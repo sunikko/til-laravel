@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreTaskRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -85,17 +86,10 @@ class TaskController extends Controller
      * }
      * }
      */
-    public function store(Request $request)
+    public function store(StoreTaskRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|min:3|max:100',
-            'description' => 'required|string|min:10|max:5000',
-        ]);
-
-        $task = $this->taskModel->create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'secure_token' => (string) Str::uuid(),
+        $task = $this->taskModel->create($request->validated() + [
+            'secure_token' => $request->secure_token,
         ]);
 
         return response()->json(['message' => 'Task created', 'task' => $task], 201);

@@ -3,6 +3,7 @@
 namespace Tests\Unit\Controllers;
 
 use App\Http\Controllers\Api\TaskController;
+use App\Http\Requests\StoreTaskRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -94,8 +95,14 @@ class TaskControllerUnitTest extends TestCase
                 ->andReturn($createdTask);
 
         // Create a mock request with input data
-        $request = new \Illuminate\Http\Request();
-        $request->replace($requestData);
+        $request = StoreTaskRequest::create('/api/tasks', 'POST', $requestData);
+        
+        // Important: Apply container and redirector for validation to work
+        $request->setContainer(app())->setRedirector(app('redirect'));
+        $request->validateResolved(); // need to manually call validateResolved
+
+        $request->merge(['secure_token' => $expectedToken]);
+
 
         // Instantiate controller with mock model
         $controller = new TaskController($taskMock);
