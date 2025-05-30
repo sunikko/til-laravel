@@ -1,0 +1,163 @@
+{
+    "info": {
+        "_postman_id": "319c394c-81cb-4ff5-91c8-ce76b62d698b",
+        "name": "Laravel Task API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": "CRUD - GET/POST/PUT/DELETE"
+    },
+    "item": [
+        {
+            "name": "http://127.0.0.1:8000/api/tasks",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/tasks",
+                    "path": ["api", "tasks"],
+                    "protocol": "http",
+                    "host": ["127", "0", "0", "1"],
+                    "port": "8000"
+                },
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"name\": \"First Task\",\n  \"description\": \"This is the description of the First task.\"\n}\n"
+                }
+            }
+        },
+        {
+            "name": "http://localhost:8000/api/tasks/663d8a7f4c1a8e3d8c8b4567",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8000/api/tasks/68264af35bbf52efc20376a4",
+                    "path": ["api", "tasks", "68264af35bbf52efc20376a4"],
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8000"
+                },
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n   \"secure_token\": \"bb3e5ff3-26ff-4d71-82a6-3dff2f14a223\",\n}\n"
+                }
+            }
+        },
+        {
+            "name": "http://localhost:8000/api/tasks/68244e7b95154ea9a000f7733",
+            "request": {
+                "method": "PUT",
+                "url": {
+                    "raw": "http://localhost:8000/api/tasks/68264af15bbf52efc20376a3",
+                    "path": ["api", "tasks", "68264af15bbf52efc20376a3"],
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8000"
+                },
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"name\": \"Updated Task\",\n  \"description\": \"This is the description of the update task.\",\n   \"secure_token\": \"a4ba1215-21f3-4b77-8d9c-e6bfdab9a3dc\"\n}\n"
+                }
+            }
+        },
+        {
+            "name": "http://localhost:8000/api/tasks/68244e7b95154ea9a000f772?secure_token=917bcac4-6512-4bfd-a5ca-a76896aac417",
+            "request": {
+                "method": "DELETE",
+                "url": {
+                    "raw": "http://localhost:8000/api/tasks/682afe29e80feba5940a78c5",
+                    "path": ["api", "tasks", "682afe29e80feba5940a78c5"],
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8000"
+                },
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n   \"secure_token\": \"5bfe2901-71ae-4142-b42a-e96d9d10be95\"\n}\n"
+                }
+            }
+        }
+    ]
+}
