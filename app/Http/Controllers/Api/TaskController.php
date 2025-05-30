@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -163,14 +164,8 @@ class TaskController extends Controller
      * "message": "No query results for model [App\\Models\\Task]."
      * }
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTaskRequest $request, $id)
     {
-        $request->validate([
-            'name' => 'required|min:3|max:100',
-            'description' => 'required|min:10|max:5000',
-            'secure_token' => 'required|string',
-        ]);
-
         $task = $this->taskModel->where('id', $id)
                 ->where('secure_token', $request->secure_token)
                 ->firstOrFail();

@@ -160,8 +160,9 @@ class TaskControllerUnitTest extends TestCase
 
         $controller = new TaskController($taskMock);
 
-        $request = new \Illuminate\Http\Request();
-        $request->replace($inputData);
+        $request = \App\Http\Requests\UpdateTaskRequest::create('/api/tasks/' . $taskId, 'PUT', $inputData);
+        $request->setContainer(app())->setRedirector(app('redirect'));
+        $request->validateResolved();
 
         $response = $controller->update($request, $taskId);
 
